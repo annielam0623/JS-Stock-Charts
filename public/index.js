@@ -31,7 +31,7 @@ async function main(){
         }
     }
 
-    // line chart
+//     // line chart
     stocks.forEach((stock) => stock.values.reverse());
     new Chart(timeChartCanvas.getContext("2d"), {
     type: "line",
@@ -39,7 +39,7 @@ async function main(){
         labels: stocks[0].values.reverse().map((value) => value.datetime),
         datasets: stocks.map((stock) => ({
         label: stock.meta.symbol,
-        data: stock.values.map((value) => parseFloat(value.high)),
+        data: stock.values.reverse().map((value) => parseFloat(value.high)),
         backgroundColor: getColor(stock.meta.symbol),
         borderColor: getColor(stock.meta.symbol),
             })),
@@ -53,4 +53,5 @@ async function main(){
         },   
     });
 }
+
 main()
